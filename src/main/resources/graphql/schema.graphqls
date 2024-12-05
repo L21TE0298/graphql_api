@@ -22,6 +22,5 @@ type Product {
   flavor: String!
   productRecomendation: String!
   imgProductPath: String!
-
 }
 
