@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 public class ProductDTO {
 
+    private Integer idProduct;
 
     private String comercialName;
 
@@ -49,5 +50,8 @@ public class ProductDTO {
 
     private Integer idAdministrationVia;
 
+    private List<Integer> idNutrients; 
+
     // private List<NutrientProductDTO> nutrientProducts;
 }
+

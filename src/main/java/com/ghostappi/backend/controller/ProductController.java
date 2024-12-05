@@ -16,17 +16,19 @@ public class ProductController {
         @Autowired
         private ProductService productServvice;
 
-        @Autowired
-        private ModelMapper modelMapper;
-
         @QueryMapping
-        public List<Product> getAll() {
+        public List<Product> getAllProducts() {
                 return productServvice.getAll();
         }
 
         @QueryMapping
         public Product getById(@Argument int idProduct) {
                 return productServvice.getById(idProduct);
+        }
+
+        @QueryMapping
+        public List<Product> getProductsByBrandId(@Argument Integer idBrand) {
+                return productServvice.getProductsByBrandId(idBrand);
         }
 
 }

@@ -118,28 +118,43 @@ public class Product {
     @Size(min = 1, max = 255, message = "The image path must be between 1 and 255 characters.")
     private String imgProductPath;
 
-    @JsonProperty("idCategory")
-    @Column(nullable = false)
-    @NotNull(message = "The category ID cannot be null.")
-    @Min(value = 1, message = "The category ID must be at least 1.")
-    @Max(value = 2147483647, message = "The category ID must not exceed 2,147,483,647.") // Máximo para INTEGER
-    private Integer idCategory;
+    // @JsonProperty("idCategory")
+    // @Column(nullable = false)
+    // @NotNull(message = "The category ID cannot be null.")
+    // @Min(value = 1, message = "The category ID must be at least 1.")
+    // @Max(value = 2147483647, message = "The category ID must not exceed 2,147,483,647.") // Máximo para INTEGER
+    // private Integer idCategory;
 
-    @JsonProperty("idBrand")
-    @Column(nullable = false)
-    @NotNull(message = "The brand ID cannot be null.")
-    @Min(value = 1, message = "The brand ID must be at least 1.")
-    @Max(value = 2147483647, message = "The brand ID must not exceed 2,147,483,647.") // Máximo para INTEGER
-    private Integer idBrand;
+    // @JsonProperty("idBrand")
+    // @Column(nullable = false)
+    // @NotNull(message = "The brand ID cannot be null.")
+    // @Min(value = 1, message = "The brand ID must be at least 1.")
+    // @Max(value = 2147483647, message = "The brand ID must not exceed 2,147,483,647.") // Máximo para INTEGER
+    // private Integer idBrand;
 
-    @JsonProperty("idAdministrationVia")
-    @Column(nullable = false)
-    @NotNull(message = "The administration ID cannot be null.")
-    @Min(value = 1, message = "The administration ID must be at least 1.")
-    @Max(value = 2147483647, message = "The administration ID must not exceed 2,147,483,647.") // Máximo para INTEGER
-    private Integer idAdministrationVia;
+    // @JsonProperty("idAdministrationVia")
+    // @Column(nullable = false)
+    // @NotNull(message = "The administration ID cannot be null.")
+    // @Min(value = 1, message = "The administration ID must be at least 1.")
+    // @Max(value = 2147483647, message = "The administration ID must not exceed 2,147,483,647.") // Máximo para INTEGER
+    // private Integer idAdministrationVia;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<NutrientProduct> nutrientProducts;
+    @OneToOne
+    @JoinColumn(name = "idCategory", referencedColumnName = "idCategory")
+    @JsonProperty("category")
+    private Category category;
+
+    @OneToOne
+    @JoinColumn(name = "idBrand", referencedColumnName = "idBrand")
+    @JsonProperty("brand")
+    private Brand brand;
+
+    @OneToOne
+    @JoinColumn(name = "idAdministrationVia", referencedColumnName = "idAdministrationVia")
+    @JsonProperty("administrationVia")
+    private AdministrationVia administrationVia;
+    
+    // @JsonManagedReference
+    // @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    // private List<NutrientProduct> nutrientProducts;
 }

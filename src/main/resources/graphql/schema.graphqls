@@ -1,9 +1,25 @@
-schema{
-    query: Query
+schema {
+  query: Query
+  mutation: Mutation
 }
-type Query{
-    getAll: [Product]
-    getById(idProduct:Int): Product
+
+type Query {
+  getAllProducts: [Product]
+  getById(idProduct: Int): Product
+  getProductsByBrandId(idBrand: Int): [Product]
+  getAllCategories: [Category]
+}
+
+type Mutation {
+  addCategory(category: CategoryDTO): Category
+}
+
+type Category {
+  idCategory: ID!
+  name: String!
+}
+input CategoryDTO {
+  name: String!
 }
 type Product {
   idProduct: ID!
@@ -22,5 +38,17 @@ type Product {
   flavor: String!
   productRecomendation: String!
   imgProductPath: String!
+  category: Category
+  brand: Brand
+  administrationVia: AdministrationVia
 }
 
+type AdministrationVia {
+  idAdministrationVia: ID!
+  name: String!
+}
+
+type Brand {
+  idBrand: ID!
+  name: String!
+}
